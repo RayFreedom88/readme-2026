@@ -11,6 +11,9 @@
     },
     {
       "path": "./apps/blog"
+    },
+    {
+      "path": "./apps/notification"
     }
   ]
 }
