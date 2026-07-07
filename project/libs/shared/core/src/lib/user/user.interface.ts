@@ -1,8 +1,10 @@
+import type { EntityId } from '../common';
+
 export interface User {
-  id: string;
+  id?: EntityId;
   email: string;
   firstname: string;
   lastname: string;
-  avatarId?: string;
+  avatarId?: EntityId;
   registeredAt: Date;
 }
