@@ -10,7 +10,7 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 module.exports = {
-  displayName: '@project/api-gateaway',
+  displayName: '@project/api-gateway',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
