@@ -17,6 +17,12 @@
     },
     {
       "path": "./apps/file-vault"
+    },
+    {
+      "path": "./libs/shared/core"
+    },
+    {
+      "path": "./libs/shared/helpers"
     }
   ]
 }
