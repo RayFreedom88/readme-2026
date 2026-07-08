@@ -23,6 +23,15 @@
     },
     {
       "path": "./libs/shared/helpers"
+    },
+    {
+      "path": "./libs/user/auth"
+    },
+    {
+      "path": "./libs/shared/data-access"
+    },
+    {
+      "path": "./libs/user/blog-user"
     }
   ]
 }

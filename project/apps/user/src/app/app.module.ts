@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
 
+import { AuthModule } from '@project/auth';
+import { BlogUserModule } from '@project/blog-user';
+
 @Module({
-  imports: [],
+  imports: [AuthModule, BlogUserModule],
   controllers: [],
   providers: [],
 })
