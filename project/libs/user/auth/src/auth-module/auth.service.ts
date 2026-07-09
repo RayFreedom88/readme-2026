@@ -46,7 +46,9 @@ export class AuthService {
       throw new NotFoundException(AuthUserExceptionMessage.NotFound);
     }
 
-    if (!(await existUser.comparePassword(password))) {
+    const isPasswordValid = await existUser.comparePassword(password);
+
+    if (!isPasswordValid) {
       throw new UnauthorizedException(AuthUserExceptionMessage.PasswordWrong);
     }
 

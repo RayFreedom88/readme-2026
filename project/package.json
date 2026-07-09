@@ -55,7 +55,8 @@
     "libs/shared/core",
     "libs/shared/helpers",
     "libs/user/*",
-    "libs/shared/data-access"
+    "libs/shared/data-access",
+    "libs/blog/*"
   ],
   "volta": {
     "node": "20.20.2"

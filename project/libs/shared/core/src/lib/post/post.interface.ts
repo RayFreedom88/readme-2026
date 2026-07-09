@@ -1,5 +1,5 @@
 import type { EntityId, Timestamps } from '../common';
-import { PostType, type PostState } from './post-type.type';
+import { PostState, PostType } from './post-type.type';
 
 export interface BasePost extends Timestamps {
   id?: EntityId;
@@ -18,31 +18,31 @@ export interface BasePost extends Timestamps {
 }
 
 export interface VideoPost extends BasePost {
-  type: typeof PostType.Video;
+  type: PostType.Video;
   title: string;
   videoUrl: string;
 }
 
 export interface TextPost extends BasePost {
-  type: typeof PostType.Text;
+  type: PostType.Text;
   title: string;
   announce: string;
   text: string;
 }
 
 export interface QuotePost extends BasePost {
-  type: typeof PostType.Quote;
+  type: PostType.Quote;
   text: string;
   quoteAuthor: string;
 }
 
 export interface PhotoPost extends BasePost {
-  type: typeof PostType.Photo;
+  type: PostType.Photo;
   photoId: EntityId;
 }
 
 export interface LinkPost extends BasePost {
-  type: typeof PostType.Link;
+  type: PostType.Link;
   url: string;
   description?: string;
 }

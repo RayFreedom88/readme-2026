@@ -8,4 +8,18 @@ export const ApiRoute = {
     Logout: 'logout',
     Id: ':id',
   },
+
+  Post: {
+    Root: 'posts',
+    Id: ':id',
+  },
+
+  Comment: {
+    Root: 'posts/:postId/comments',
+    Id: ':commentId',
+  },
+
+  Like: {
+    Root: 'posts/:postId/likes',
+  },
 } as const;

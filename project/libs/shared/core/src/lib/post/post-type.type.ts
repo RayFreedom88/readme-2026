@@ -1,21 +1,18 @@
-export const PostType = {
-  Video: 'video',
-  Text: 'text',
-  Quote: 'quote',
-  Photo: 'photo',
-  Link: 'link',
-} as const;
-export type PostType = (typeof PostType)[keyof typeof PostType];
+export enum PostType {
+  Video = 'video',
+  Text = 'text',
+  Quote = 'quote',
+  Photo = 'photo',
+  Link = 'link',
+}
 
-export const PostState = {
-  Published: 'published',
-  Draft: 'draft',
-} as const;
-export type PostState = (typeof PostState)[keyof typeof PostState];
+export enum PostState {
+  Published = 'published',
+  Draft = 'draft',
+}
 
-export const PostSorting = {
-  ByPublishDate: 'publish-date',
-  ByLikes: 'likes',
-  ByComments: 'comments',
-} as const;
-export type PostSorting = (typeof PostSorting)[keyof typeof PostSorting];
+export enum PostSorting {
+  ByPublishDate = 'publish-date',
+  ByLikes = 'likes',
+  ByComments = 'comments',
+}
