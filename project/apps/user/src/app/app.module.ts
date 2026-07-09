@@ -4,7 +4,11 @@ import { AuthModule } from '@project/auth';
 import { BlogUserModule } from '@project/blog-user';
 
 @Module({
-  imports: [AuthModule, BlogUserModule],
+  imports: [
+    // TODO: добавить ConfigModule.forRoot({ isGlobal: true }) и создать .env с JWT_SECRET
+    AuthModule,
+    BlogUserModule,
+  ],
   controllers: [],
   providers: [],
 })

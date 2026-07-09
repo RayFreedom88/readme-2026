@@ -10,7 +10,7 @@ export class BlogUserEntity extends Entity implements StorableEntity<AuthUser> {
   public firstname = '';
   public lastname = '';
   public avatarId?: string;
-  public registeredAt = new Date();
+  public createdAt = new Date();
   public passwordHash = '';
 
   constructor(user?: AuthUser) {
@@ -28,7 +28,7 @@ export class BlogUserEntity extends Entity implements StorableEntity<AuthUser> {
     this.firstname = user.firstname;
     this.lastname = user.lastname;
     this.avatarId = user.avatarId;
-    this.registeredAt = user.registeredAt;
+    this.createdAt = user.createdAt;
     this.passwordHash = user.passwordHash;
   }
 
@@ -39,7 +39,7 @@ export class BlogUserEntity extends Entity implements StorableEntity<AuthUser> {
       firstname: this.firstname,
       lastname: this.lastname,
       avatarId: this.avatarId,
-      registeredAt: this.registeredAt,
+      createdAt: this.createdAt,
       passwordHash: this.passwordHash,
     };
   }

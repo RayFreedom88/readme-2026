@@ -6,6 +6,9 @@
     "name": "user",
     "targets": {
       "build": {
+        "dependsOn": [
+          "^build"
+        ],
         "executor": "nx:run-commands",
         "options": {
           "command": "webpack-cli build",
@@ -65,7 +68,7 @@
         ],
         "options": {
           "buildTarget": "user:build",
-          "runBuildTargetDependencies": false
+          "runBuildTargetDependencies": true
         },
         "configurations": {
           "development": {
@@ -84,6 +87,8 @@
     }
   },
   "dependencies": {
+    "@project/auth": "0.0.1",
+    "@project/blog-user": "0.0.1",
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",

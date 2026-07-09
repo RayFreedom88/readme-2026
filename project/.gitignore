@@ -24,6 +24,11 @@ node_modules
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# Agents
+.cursor/
+.agents/
+AGENTS.md
+
 # misc
 /.sass-cache
 /connect.lock
@@ -44,3 +49,5 @@ Thumbs.db
 .claude/settings.local.json
 
 test-output
+
+.nx/polygraph

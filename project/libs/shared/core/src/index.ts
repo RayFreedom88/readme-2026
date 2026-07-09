@@ -1,3 +1,5 @@
+export { ApiRoute } from './lib/api/api-route.constant';
+
 export { Entity, type EntityFactory, type StorableEntity } from './lib/base';
 
 export type { EntityId, Timestamps } from './lib/common';

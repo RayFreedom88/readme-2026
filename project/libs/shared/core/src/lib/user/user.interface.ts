@@ -6,5 +6,5 @@ export interface User {
   firstname: string;
   lastname: string;
   avatarId?: EntityId;
-  registeredAt: Date;
+  createdAt: Date;
 }
