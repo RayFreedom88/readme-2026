@@ -4,7 +4,7 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/api-gateaway"
+      "path": "./apps/api-gateway"
     },
     {
       "path": "./apps/user"
@@ -14,6 +14,33 @@
     },
     {
       "path": "./apps/notification"
+    },
+    {
+      "path": "./apps/file-vault"
+    },
+    {
+      "path": "./libs/shared/core"
+    },
+    {
+      "path": "./libs/shared/helpers"
+    },
+    {
+      "path": "./libs/user/auth"
+    },
+    {
+      "path": "./libs/shared/data-access"
+    },
+    {
+      "path": "./libs/user/blog-user"
+    },
+    {
+      "path": "./libs/blog/post"
+    },
+    {
+      "path": "./libs/blog/comment"
+    },
+    {
+      "path": "./libs/blog/like"
     }
   ]
 }

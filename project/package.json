@@ -9,6 +9,9 @@
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
     "axios": "^1.6.0",
+    "bcrypt": "6.0.0",
+    "class-transformer": "0.5.1",
+    "dayjs": "1.11.21",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0"
   },
@@ -29,6 +32,7 @@
     "@swc/core": "~1.15.5",
     "@swc/helpers": "~0.5.18",
     "@swc/jest": "~0.2.38",
+    "@types/bcrypt": "6.0.0",
     "@types/jest": "~30.0.0",
     "@types/node": "20.19.9",
     "eslint": "^9.8.0",
@@ -36,6 +40,7 @@
     "jest": "~30.3.0",
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
+    "jsonc-eslint-parser": "^2.1.0",
     "nx": "22.7.5",
     "prettier": "~3.6.2",
     "ts-jest": "^29.4.0",
@@ -46,7 +51,12 @@
     "webpack-cli": "^5.1.4"
   },
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "libs/shared/core",
+    "libs/shared/helpers",
+    "libs/user/*",
+    "libs/shared/data-access",
+    "libs/blog/*"
   ],
   "volta": {
     "node": "20.20.2"

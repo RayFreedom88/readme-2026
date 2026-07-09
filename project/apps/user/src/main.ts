@@ -11,6 +11,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+
+  // TODO: добавить глобальный ValidationPipe({ whitelist: true, forbidNonWhitelisted: true })
+  // TODO: настроить SwaggerModule (DocumentBuilder + setup на /spec)
+
   const port = process.env.PORT || 3000;
   await app.listen(port);
   Logger.log(

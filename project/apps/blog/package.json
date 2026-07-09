@@ -84,6 +84,9 @@
     }
   },
   "dependencies": {
+    "@project/comment": "0.0.1",
+    "@project/like": "0.0.1",
+    "@project/post": "0.0.1",
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",

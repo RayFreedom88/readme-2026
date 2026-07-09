@@ -20,5 +20,16 @@
     "eslint.config.js",
     "eslint.config.cjs",
     "eslint.config.mjs"
+  ],
+  "references": [
+    {
+      "path": "../../libs/blog/post/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/blog/comment/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/blog/like/tsconfig.lib.json"
+    }
   ]
 }
