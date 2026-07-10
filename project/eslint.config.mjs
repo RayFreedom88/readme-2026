@@ -1,4 +1,5 @@
 import nx from "@nx/eslint-plugin";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 
 export default [
     ...nx.configs["flat/base"],
@@ -6,8 +7,14 @@ export default [
     ...nx.configs["flat/javascript"],
     {
         ignores: [
+            "**/node_modules",
             "**/dist",
-            "**/out-tsc"
+            "**/out-tsc",
+            "**/tmp",
+            "**/test-output",
+            "**/coverage",
+            "**/.nx/**",
+            "**/*.tsbuildinfo",
         ]
     },
     {
@@ -48,7 +55,22 @@ export default [
             "**/*.cjs",
             "**/*.mjs"
         ],
-        // Override or add rules here
-        rules: {}
+        plugins: {
+            "simple-import-sort": simpleImportSort,
+        },
+        rules: {
+            "simple-import-sort/imports": [
+                "warn",
+                {
+                    groups: [
+                        ["^[^.@]", "^@(?!project/)"],
+                        ["^@project/"],
+                        ["^\\./"],
+                        ["^\\.\\./"],
+                    ],
+                },
+            ],
+            "simple-import-sort/exports": "warn",
+        },
     }
 ];

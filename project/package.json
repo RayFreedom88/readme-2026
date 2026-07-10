@@ -2,12 +2,18 @@
   "name": "@project/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "format": "nx format:write --all && nx run-many -t lint --all -- --fix",
+    "format:check": "nx format:check --all && nx run-many -t lint --all",
+    "lint": "nx run-many -t lint --all",
+    "lint:fix": "nx run-many -t lint --all -- --fix"
+  },
   "private": true,
   "dependencies": {
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/swagger": "11.4.5",
     "axios": "^1.6.0",
     "bcrypt": "6.0.0",
     "class-transformer": "0.5.1",
@@ -37,6 +43,7 @@
     "@types/node": "20.19.9",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-simple-import-sort": "^13.0.0",
     "jest": "~30.3.0",
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
