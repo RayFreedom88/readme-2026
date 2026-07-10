@@ -19,6 +19,6 @@ export class BlogUserRepository extends BaseMemoryRepository<BlogUserEntity> {
       return null;
     }
 
-    return Promise.resolve(this.entityFactory.create(user));
+    return this.entityFactory.create(user);
   }
 }
