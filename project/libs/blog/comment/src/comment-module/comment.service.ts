@@ -2,10 +2,10 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { PostRepository } from '@project/post';
 
-import { CommentExceptionMessage } from './comment.constant';
 import { CommentEntity } from './comment.entity';
 import { CommentRepository } from './comment.repository';
 
+import { CommentExceptionMessage } from '../comment.constant';
 import { CreateCommentDto } from '../dto/create-comment.dto';
 
 @Injectable()

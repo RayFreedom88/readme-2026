@@ -2,11 +2,11 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 import type { Post } from '@project/core';
 
-import { PostExceptionMessage } from './post.constant';
 import { PostEntity } from './post.entity';
 import { PostRepository } from './post.repository';
 
 import { CreatePostDto } from '../dto/create-post.dto';
+import { PostExceptionMessage } from '../post.constant';
 
 @Injectable()
 export class PostService {
