@@ -1,5 +1,5 @@
-import { Entity } from '@project/core';
 import type { EntityId, Post, StorableEntity } from '@project/core';
+import { Entity } from '@project/core';
 import { PostState, PostType } from '@project/core';
 
 export class PostEntity extends Entity implements StorableEntity<Post> {

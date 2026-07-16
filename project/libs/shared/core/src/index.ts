@@ -1,28 +1,23 @@
 export { ApiRoute } from './lib/api/api-route.constant';
-
 export { Entity, type EntityFactory, type StorableEntity } from './lib/base';
-
 export type { EntityId, Timestamps } from './lib/common';
-
-export type {
-  User,
-  AuthUser,
-  UserDetails,
-  Subscription,
-  TokenPayload,
-} from './lib/user';
-
-export { PostType, PostState, PostSorting } from './lib/post';
+export type { StoredFile } from './lib/file';
 export type {
   BasePost,
-  VideoPost,
-  TextPost,
-  QuotePost,
-  PhotoPost,
-  LinkPost,
-  Post,
   Comment,
   Like,
+  LinkPost,
+  PhotoPost,
+  Post,
+  QuotePost,
+  TextPost,
+  VideoPost,
 } from './lib/post';
-
-export type { StoredFile } from './lib/file';
+export { PostSorting, PostState, PostType } from './lib/post';
+export type {
+  AuthUser,
+  Subscription,
+  TokenPayload,
+  User,
+  UserDetails,
+} from './lib/user';

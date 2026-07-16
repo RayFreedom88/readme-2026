@@ -1,5 +1,5 @@
-import { Entity } from '@project/core';
 import type { Like, StorableEntity } from '@project/core';
+import { Entity } from '@project/core';
 
 export class LikeEntity extends Entity implements StorableEntity<Like> {
   public postId = '';

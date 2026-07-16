@@ -6,10 +6,11 @@ import {
 
 import { PostRepository } from '@project/post';
 
-import { CreateLikeDto } from '../dto/create-like.dto';
 import { LikeExceptionMessage } from './like.constant';
 import { LikeEntity } from './like.entity';
 import { LikeRepository } from './like.repository';
+
+import { CreateLikeDto } from '../dto/create-like.dto';
 
 @Injectable()
 export class LikeService {

@@ -3,9 +3,10 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiRoute } from '@project/core';
 import { fillDto } from '@project/helpers';
 
+import { LikeService } from './like.service';
+
 import { CreateLikeDto } from '../dto/create-like.dto';
 import { LikeRdo } from '../rdo/like.rdo';
-import { LikeService } from './like.service';
 
 // TODO: добавить @ApiTags('likes') и декораторы @ApiOperation/@ApiResponse для OpenAPI-документации
 @Controller(ApiRoute.Like.Root)

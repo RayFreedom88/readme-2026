@@ -1,5 +1,6 @@
-import type { EntityId, Timestamps } from '../common';
 import { PostState, PostType } from './post-type.type';
+
+import type { EntityId, Timestamps } from '../common';
 
 export interface BasePost extends Timestamps {
   id?: EntityId;

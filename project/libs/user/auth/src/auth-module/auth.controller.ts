@@ -7,8 +7,8 @@ import { AuthService } from './auth.service';
 
 import { CreateUserDto } from '../dto/create-user.dto';
 import { LoginUserDto } from '../dto/login-user.dto';
-import { UserRdo } from '../rdo/user.rdo';
 import { LoggedUserRdo } from '../rdo/logged-user.rdo';
+import { UserRdo } from '../rdo/user.rdo';
 
 // TODO: добавить @ApiTags('auth') и декораторы @ApiOperation/@ApiResponse для OpenAPI-документации
 @Controller(ApiRoute.Auth.Root)

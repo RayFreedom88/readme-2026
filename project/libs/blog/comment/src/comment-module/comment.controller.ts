@@ -12,9 +12,10 @@ import {
 import { ApiRoute } from '@project/core';
 import { fillDto } from '@project/helpers';
 
+import { CommentService } from './comment.service';
+
 import { CreateCommentDto } from '../dto/create-comment.dto';
 import { CommentRdo } from '../rdo/comment.rdo';
-import { CommentService } from './comment.service';
 
 // TODO: добавить @ApiTags('comments') и декораторы @ApiOperation/@ApiResponse для OpenAPI-документации
 @Controller(ApiRoute.Comment.Root)

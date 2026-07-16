@@ -3,9 +3,10 @@ import { Body, Controller, Get, Param, Post as HttpPost } from '@nestjs/common';
 import { ApiRoute } from '@project/core';
 import { fillDto } from '@project/helpers';
 
+import { PostService } from './post.service';
+
 import { CreatePostDto } from '../dto/create-post.dto';
 import { PostRdo } from '../rdo/post.rdo';
-import { PostService } from './post.service';
 
 // TODO: добавить @ApiTags('posts') и декораторы @ApiOperation/@ApiResponse для OpenAPI-документации
 @Controller(ApiRoute.Post.Root)
