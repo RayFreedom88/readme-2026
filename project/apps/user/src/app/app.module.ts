@@ -2,13 +2,10 @@ import { Module } from '@nestjs/common';
 
 import { AuthModule } from '@project/auth';
 import { BlogUserModule } from '@project/blog-user';
+import { UserConfigModule } from '@project/user-config';
 
 @Module({
-  imports: [
-    // TODO: добавить ConfigModule.forRoot({ isGlobal: true }) и создать .env с JWT_SECRET
-    AuthModule,
-    BlogUserModule,
-  ],
+  imports: [AuthModule, BlogUserModule, UserConfigModule],
   controllers: [],
   providers: [],
 })

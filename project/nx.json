@@ -63,5 +63,12 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     }
+  },
+  "generators": {
+    "@nx/nest:library": {
+      "buildable": true,
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    }
   }
 }

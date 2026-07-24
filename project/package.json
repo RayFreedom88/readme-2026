@@ -5,6 +5,8 @@
   "scripts": {
     "format": "nx format:write --all && nx run-many -t lint --all -- --fix",
     "format:check": "nx format:check --all && nx run-many -t lint --all",
+    "generate:lib": "nx generate @nx/nest:library --buildable --linter=eslint --unitTestRunner=jest --no-interactive",
+    "generate:lib:dry-run": "nx generate @nx/nest:library --buildable --linter=eslint --unitTestRunner=jest --dry-run --no-interactive",
     "lint": "nx run-many -t lint --all",
     "lint:fix": "nx run-many -t lint --all -- --fix"
   },
@@ -19,6 +21,7 @@
     "bcrypt": "6.0.0",
     "class-transformer": "0.5.1",
     "dayjs": "1.11.21",
+    "joi": "18.2.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0"
   },

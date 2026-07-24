@@ -16,24 +16,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*.ts"],
-  "references": [
-    {
-      "path": "../../shared/helpers/tsconfig.lib.json"
-    },
-    {
-      "path": "../../shared/core/tsconfig.lib.json"
-    },
-    {
-      "path": "../blog-user/tsconfig.lib.json"
-    },
-    {
-      "path": "../config/tsconfig.lib.json"
-    }
-  ],
-  "exclude": [
-    "jest.config.ts",
-    "jest.config.cts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts"
-  ]
+  "references": []
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@project/auth",
+  "name": "@project/user-config",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",
@@ -15,9 +15,6 @@
     }
   },
   "dependencies": {
-    "@project/blog-user": "0.0.1",
-    "@project/core": "0.0.1",
-    "@project/user-config": "0.0.1",
     "tslib": "^2.3.0"
   }
 }
