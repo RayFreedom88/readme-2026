@@ -48,7 +48,6 @@ export class AuthService {
     return await this.blogUserRepository.save(userEntity);
   }
 
-  // TODO: вернуть { user, accessToken } — сгенерировать JWT через JwtService и TokenPayload из @project/core
   public async verifyUser(dto: LoginUserDto) {
     const { email, password } = dto;
 
