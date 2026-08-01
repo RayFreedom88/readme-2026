@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import type { EntityFactory, Post } from '@project/core';
+
 import { PostEntity } from './post.entity';
 
 @Injectable()

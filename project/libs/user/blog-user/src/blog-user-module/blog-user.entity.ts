@@ -1,7 +1,7 @@
-import { hash, genSalt, compare } from 'bcrypt';
+import { compare, genSalt, hash } from 'bcrypt';
 
 import { Entity } from '@project/core';
-import { StorableEntity, AuthUser } from '@project/core';
+import { AuthUser, StorableEntity } from '@project/core';
 
 const SALT_ROUNDS = 10;
 

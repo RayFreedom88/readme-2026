@@ -25,6 +25,9 @@
     },
     {
       "path": "../blog-user/tsconfig.lib.json"
+    },
+    {
+      "path": "../config/tsconfig.lib.json"
     }
   ],
   "exclude": [

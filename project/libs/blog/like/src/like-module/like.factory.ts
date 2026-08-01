@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import type { EntityFactory, Like } from '@project/core';
+
 import { LikeEntity } from './like.entity';
 
 @Injectable()

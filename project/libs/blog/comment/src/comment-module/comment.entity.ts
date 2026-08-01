@@ -1,5 +1,5 @@
-import { Entity } from '@project/core';
 import type { Comment, StorableEntity } from '@project/core';
+import { Entity } from '@project/core';
 
 export class CommentEntity extends Entity implements StorableEntity<Comment> {
   public postId = '';

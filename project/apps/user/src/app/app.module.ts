@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 
 import { AuthModule } from '@project/auth';
 import { BlogUserModule } from '@project/blog-user';
+import { getMongooseOptions, UserConfigModule } from '@project/user-config';
 
 @Module({
   imports: [
-    // TODO: добавить ConfigModule.forRoot({ isGlobal: true }) и создать .env с JWT_SECRET
     AuthModule,
     BlogUserModule,
+    UserConfigModule,
+    MongooseModule.forRootAsync(getMongooseOptions()),
   ],
   controllers: [],
   providers: [],

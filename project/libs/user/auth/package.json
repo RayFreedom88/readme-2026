@@ -17,6 +17,7 @@
   "dependencies": {
     "@project/blog-user": "0.0.1",
     "@project/core": "0.0.1",
+    "@project/user-config": "0.0.1",
     "tslib": "^2.3.0"
   }
 }

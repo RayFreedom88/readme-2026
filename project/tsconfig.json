@@ -41,6 +41,9 @@
     },
     {
       "path": "./libs/blog/like"
+    },
+    {
+      "path": "./libs/user/config"
     }
   ]
 }

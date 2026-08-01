@@ -1,5 +1,22 @@
-# Add files here to ignore them from prettier formatting
-/dist
-/coverage
-/.nx/cache
-/.nx/workspace-data
+# dependencies
+node_modules
+
+# compiled output
+dist
+tmp
+out-tsc
+test-output
+
+# test coverage
+coverage
+
+# nx
+.nx/cache
+.nx/workspace-data
+.nx/polygraph
+
+# generated
+*.tsbuildinfo
+
+# lock files
+package-lock.json
