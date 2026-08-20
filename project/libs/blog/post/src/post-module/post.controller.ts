@@ -11,6 +11,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ApiRoute } from '@project/core';
 import { fillDto } from '@project/helpers';
 
+import { PostEntity } from './post.entity';
 import { PostService } from './post.service';
 
 import { CreatePostDto } from '../dto/create-post.dto';
@@ -31,7 +32,7 @@ export class PostController {
   public async create(@Body() dto: CreatePostDto) {
     const post = await this.postService.create(dto);
 
-    return fillDto(PostRdo, post.toPOJO());
+    return fillDto(PostRdo, this.toPostRdo(post));
   }
 
   @ApiResponse({
@@ -46,7 +47,7 @@ export class PostController {
 
     return fillDto(
       PostRdo,
-      posts.map((post) => post.toPOJO()),
+      posts.map((post) => this.toPostRdo(post)),
     );
   }
 
@@ -63,6 +64,13 @@ export class PostController {
   public async show(@Param('id') id: string) {
     const post = await this.postService.findById(id);
 
-    return fillDto(PostRdo, post.toPOJO());
+    return fillDto(PostRdo, this.toPostRdo(post));
+  }
+
+  private toPostRdo(post: PostEntity) {
+    return {
+      ...post.toPOJO(),
+      tags: post.tags.map((tag) => tag.name),
+    };
   }
 }

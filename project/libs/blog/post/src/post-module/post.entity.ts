@@ -1,12 +1,11 @@
-import type { EntityId, Post, StorableEntity } from '@project/core';
-import { Entity } from '@project/core';
-import { PostState, PostType } from '@project/core';
+import type { EntityId, Post, StorableEntity, Tag } from '@project/core';
+import { Entity, PostState, PostType } from '@project/core';
 
 export class PostEntity extends Entity implements StorableEntity<Post> {
   public type: PostType = PostType.Text;
-  public state: PostState = PostState.Draft;
+  public state: PostState = PostState.Published;
   public authorId = '';
-  public tags: string[] = [];
+  public tags: Tag[] = [];
   public publishedAt: Date = new Date();
 
   public isRepost = false;

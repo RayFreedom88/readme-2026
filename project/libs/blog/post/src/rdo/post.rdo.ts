@@ -56,6 +56,22 @@ export class PostRdo {
   public isRepost!: boolean;
 
   @ApiProperty({
+    description: PostPropertyDescription.OriginalAuthorId,
+    example: '123e4567-e89b-12d3-a456-426614174000',
+    required: false,
+  })
+  @Expose()
+  public originalAuthorId?: string;
+
+  @ApiProperty({
+    description: PostPropertyDescription.OriginalPostId,
+    example: '123e4567-e89b-12d3-a456-426614174000',
+    required: false,
+  })
+  @Expose()
+  public originalPostId?: string;
+
+  @ApiProperty({
     description: PostPropertyDescription.LikesCount,
     example: 10,
   })

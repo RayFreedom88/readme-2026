@@ -15,7 +15,7 @@ export class PostService {
   public async create(dto: CreatePostDto): Promise<PostEntity> {
     const postEntity = new PostEntity({
       ...dto,
-      tags: dto.tags ?? [],
+      tags: (dto.tags ?? []).map((name) => ({ name })),
       isRepost: dto.isRepost ?? false,
       publishedAt: dto.publishedAt ?? new Date(),
       likesCount: 0,

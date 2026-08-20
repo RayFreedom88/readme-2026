@@ -1,4 +1,5 @@
 import { PostState, PostType } from './post-type.type';
+import type { Tag } from './tag.interface';
 
 import type { EntityId, Timestamps } from '../common';
 
@@ -7,7 +8,7 @@ export interface BasePost extends Timestamps {
   type: PostType;
   state: PostState;
   authorId: EntityId;
-  tags: string[];
+  tags: Tag[];
   publishedAt: Date;
 
   isRepost: boolean;
