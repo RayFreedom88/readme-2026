@@ -23,6 +23,9 @@
   ],
   "references": [
     {
+      "path": "../../libs/blog/config/tsconfig.lib.json"
+    },
+    {
       "path": "../../libs/blog/post/tsconfig.lib.json"
     },
     {

@@ -26,7 +26,7 @@ node_modules
 
 # Agents
 .cursor/
-.agents/skills
+.agents/
 AGENTS.md
 
 # misc
@@ -45,8 +45,6 @@ Thumbs.db
 
 .nx/cache
 .nx/workspace-data
-.claude/worktrees
-.claude/settings.local.json
 
 test-output
 

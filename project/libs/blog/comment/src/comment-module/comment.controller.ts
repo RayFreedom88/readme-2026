@@ -6,18 +6,26 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseUUIDPipe,
   Post,
+  Query,
 } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { ApiRoute } from '@project/core';
 import { fillDto } from '@project/helpers';
 
 import { CommentService } from './comment.service';
 
-import { COMMENT_TAG, CommentResponseDescription } from '../comment.constant';
+import {
+  COMMENT_TAG,
+  CommentPagination,
+  CommentResponseDescription,
+} from '../comment.constant';
+import { CommentQuery } from '../dto/comment-query.dto';
 import { CreateCommentDto } from '../dto/create-comment.dto';
 import { CommentRdo } from '../rdo/comment.rdo';
+import { CommentListRdo } from '../rdo/comment-list.rdo';
 
 @ApiTags(COMMENT_TAG)
 @Controller(ApiRoute.Comment.Root)
@@ -35,7 +43,7 @@ export class CommentController {
   })
   @Post()
   public async create(
-    @Param('postId') postId: string,
+    @Param('postId', ParseUUIDPipe) postId: string,
     @Body() dto: CreateCommentDto,
   ) {
     const comment = await this.commentService.create(postId, dto);
@@ -44,19 +52,33 @@ export class CommentController {
   }
 
   @ApiResponse({
-    type: CommentRdo,
+    type: CommentListRdo,
     status: HttpStatus.OK,
-    isArray: true,
     description: CommentResponseDescription.CommentsFound,
   })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: CommentResponseDescription.PostNotFound,
+  })
   @Get()
-  public async index(@Param('postId') postId: string) {
-    const comments = await this.commentService.findByPostId(postId);
-
-    return fillDto(
-      CommentRdo,
-      comments.map((comment) => comment.toPOJO()),
+  public async index(
+    @Param('postId', ParseUUIDPipe) postId: string,
+    @Query() query: CommentQuery,
+  ) {
+    const { entities, total } = await this.commentService.findByPostId(
+      postId,
+      query,
     );
+
+    return fillDto(CommentListRdo, {
+      items: fillDto(
+        CommentRdo,
+        entities.map((comment) => comment.toPOJO()),
+      ),
+      total,
+      page: query.page ?? CommentPagination.DefaultPage,
+      limit: query.limit ?? CommentPagination.DefaultLimit,
+    });
   }
 
   @ApiResponse({
@@ -67,12 +89,23 @@ export class CommentController {
     status: HttpStatus.NOT_FOUND,
     description: CommentResponseDescription.CommentNotFound,
   })
+  @ApiResponse({
+    status: HttpStatus.FORBIDDEN,
+    description: CommentResponseDescription.CommentForbidden,
+  })
+  @ApiQuery({
+    name: 'authorId',
+    required: true,
+    type: String,
+    description: 'Temporary until API Gateway identity is wired',
+  })
   @Delete(ApiRoute.Comment.Id)
   @HttpCode(HttpStatus.NO_CONTENT)
   public async delete(
-    @Param('postId') postId: string,
-    @Param('commentId') commentId: string,
+    @Param('postId', ParseUUIDPipe) postId: string,
+    @Param('commentId', ParseUUIDPipe) commentId: string,
+    @Query('authorId') authorId: string,
   ) {
-    await this.commentService.delete(postId, commentId);
+    await this.commentService.delete(postId, commentId, authorId);
   }
 }

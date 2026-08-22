@@ -1,20 +1,18 @@
 import { type ClassTransformOptions, plainToInstance } from 'class-transformer';
 
-type PlainObject = object;
-
-export function fillDto<T, V extends PlainObject>(
-  DtoClass: new () => T,
-  plainObject: V,
-  options?: ClassTransformOptions,
-): T;
-
-export function fillDto<T, V extends PlainObject[]>(
+export function fillDto<T, V extends readonly unknown[]>(
   DtoClass: new () => T,
   plainObject: V,
   options?: ClassTransformOptions,
 ): T[];
 
-export function fillDto<T, V extends PlainObject>(
+export function fillDto<T, V>(
+  DtoClass: new () => T,
+  plainObject: V,
+  options?: ClassTransformOptions,
+): T;
+
+export function fillDto<T, V>(
   DtoClass: new () => T,
   plainObject: V,
   options?: ClassTransformOptions,

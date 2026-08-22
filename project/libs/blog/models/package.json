@@ -18,6 +18,9 @@
     "name": "models"
   },
   "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@prisma/adapter-pg": "7.9.1",
+    "pg": "8.23.0",
     "tslib": "^2.3.0"
   }
 }

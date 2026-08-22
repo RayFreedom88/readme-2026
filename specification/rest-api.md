@@ -22,11 +22,11 @@
 ├── posts                             # Blog Service
 │   ├── GET    /                  ✓
 │   ├── POST   /                  ✓
-│   ├── GET    /drafts            ○
+│   ├── GET    /drafts            ✓
 │   ├── GET    /:id               ✓
-│   ├── PATCH  /:id               ○
-│   ├── DELETE /:id               ○
-│   ├── POST   /:id/repost        ○
+│   ├── PATCH  /:id               ✓
+│   ├── DELETE /:id               ✓
+│   ├── POST   /:id/repost        ✓
 │   │
 │   ├── /:postId/comments
 │   │   ├── GET    /              ✓
@@ -36,7 +36,7 @@
 │   └── /:postId/likes
 │       ├── GET    /              ✓
 │       ├── POST   /              ✓
-│       └── DELETE /              ○
+│       └── DELETE /              ✓
 │
 ├── comments                          # Blog Service
 │   └── DELETE /:id               ○

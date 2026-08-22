@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "tslib": "^2.3.0",
-    "@project/core": "0.0.1"
+    "@project/core": "0.0.1",
+    "mongoose": "9.8.1",
+    "@nestjs/common": "^11.0.0"
   }
 }
