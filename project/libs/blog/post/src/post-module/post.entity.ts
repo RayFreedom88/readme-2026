@@ -1,12 +1,11 @@
-import type { EntityId, Post, StorableEntity } from '@project/core';
-import { Entity } from '@project/core';
-import { PostState, PostType } from '@project/core';
+import type { EntityId, Post, StorableEntity, Tag } from '@project/core';
+import { Entity, PostState, PostType } from '@project/core';
 
 export class PostEntity extends Entity implements StorableEntity<Post> {
   public type: PostType = PostType.Text;
-  public state: PostState = PostState.Draft;
+  public state: PostState = PostState.Published;
   public authorId = '';
-  public tags: string[] = [];
+  public tags: Tag[] = [];
   public publishedAt: Date = new Date();
 
   public isRepost = false;
@@ -17,7 +16,6 @@ export class PostEntity extends Entity implements StorableEntity<Post> {
   public commentsCount = 0;
   public createdAt: Date = new Date();
 
-  // TODO: разделить сущность по подтипам (Video/Text/Quote/Photo/Link), когда появится строгая валидация DTO.
   public title?: string;
   public announce?: string;
   public text?: string;
@@ -37,8 +35,54 @@ export class PostEntity extends Entity implements StorableEntity<Post> {
       return;
     }
 
-    Object.assign(this, post);
     this.id = post.id ?? '';
+    this.type = post.type;
+    this.state = post.state;
+    this.authorId = post.authorId;
+    this.tags = post.tags ?? [];
+    this.publishedAt = post.publishedAt;
+    this.isRepost = post.isRepost;
+    this.originalAuthorId = post.originalAuthorId;
+    this.originalPostId = post.originalPostId;
+    this.likesCount = post.likesCount;
+    this.commentsCount = post.commentsCount;
+    this.createdAt = post.createdAt;
+
+    this.title = undefined;
+    this.announce = undefined;
+    this.text = undefined;
+    this.videoUrl = undefined;
+    this.photoId = undefined;
+    this.url = undefined;
+    this.description = undefined;
+    this.quoteAuthor = undefined;
+
+    switch (post.type) {
+      case PostType.Video:
+        this.title = post.title;
+        this.videoUrl = post.videoUrl;
+        break;
+      case PostType.Text:
+        this.title = post.title;
+        this.announce = post.announce;
+        this.text = post.text;
+        break;
+      case PostType.Quote:
+        this.text = post.text;
+        this.quoteAuthor = post.quoteAuthor;
+        break;
+      case PostType.Photo:
+        this.photoId = post.photoId;
+        break;
+      case PostType.Link:
+        this.url = post.url;
+        this.description = post.description;
+        break;
+      default: {
+        const exhaustive: never = post;
+        throw new Error(`Unknown post type: ${exhaustive}`);
+      }
+    }
   }
 
   public toPOJO(): Post {

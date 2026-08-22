@@ -1,5 +1,16 @@
-import { Body, Controller, Get, HttpStatus, Param, Post } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
+import { ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { ApiRoute } from '@project/core';
 import { fillDto } from '@project/helpers';
@@ -30,7 +41,7 @@ export class LikeController {
   })
   @Post()
   public async create(
-    @Param('postId') postId: string,
+    @Param('postId', ParseUUIDPipe) postId: string,
     @Body() dto: CreateLikeDto,
   ) {
     const like = await this.likeService.create(postId, dto);
@@ -44,13 +55,40 @@ export class LikeController {
     isArray: true,
     description: LikeResponseDescription.LikesFound,
   })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: LikeResponseDescription.PostNotFound,
+  })
   @Get()
-  public async index(@Param('postId') postId: string) {
+  public async index(@Param('postId', ParseUUIDPipe) postId: string) {
     const likes = await this.likeService.findByPostId(postId);
 
     return fillDto(
       LikeRdo,
       likes.map((like) => like.toPOJO()),
     );
+  }
+
+  @ApiResponse({
+    status: HttpStatus.NO_CONTENT,
+    description: LikeResponseDescription.LikeDeleted,
+  })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: LikeResponseDescription.LikeNotFound,
+  })
+  @ApiQuery({
+    name: 'userId',
+    required: true,
+    type: String,
+    description: 'Temporary until API Gateway identity is wired',
+  })
+  @Delete()
+  @HttpCode(HttpStatus.NO_CONTENT)
+  public async delete(
+    @Param('postId', ParseUUIDPipe) postId: string,
+    @Query('userId') userId: string,
+  ) {
+    await this.likeService.delete(postId, userId);
   }
 }

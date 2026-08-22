@@ -1,0 +1,95 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PostType {
+  video
+  text
+  quote
+  photo
+  link
+
+  @@map("post_type")
+}
+
+enum PostState {
+  published
+  draft
+
+  @@map("post_state")
+}
+
+model Post {
+  id               String    @id @default(uuid())
+  type             PostType  @map("type_post")
+  state            PostState @default(published) @map("state_post")
+  authorId         String    @map("author_id")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  publishedAt      DateTime  @default(now()) @map("published_at")
+  isRepost         Boolean   @default(false) @map("is_repost")
+  originalAuthorId String?   @map("original_author_id")
+  originalPostId   String?   @map("original_post_id")
+  likesCount       Int       @default(0) @map("likes_count")
+  commentsCount    Int       @default(0) @map("comments_count")
+  title            String?
+  announce         String?
+  text             String?
+  videoUrl         String?   @map("video_url")
+  photoId          String?   @map("photo_id")
+  url              String?
+  description      String?
+  quoteAuthor      String?   @map("quote_author")
+
+  comments Comment[]
+  likes    Like[]
+  tags     Tag[]
+
+  @@unique([authorId, originalPostId])
+  @@index([authorId, state])
+  @@index([state, publishedAt])
+  @@index([state, likesCount])
+  @@index([state, commentsCount])
+  @@index([state, type])
+  @@index([title])
+  @@map("posts")
+}
+
+model Tag {
+  id    String @id @default(uuid())
+  name  String @unique
+  posts Post[]
+
+  @@map("tags")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  text      String
+  authorId  String   @map("author_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  postId    String   @map("post_id")
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@index([authorId])
+  @@map("comments")
+}
+
+model Like {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  postId    String   @map("post_id")
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, userId])
+  @@index([postId])
+  @@index([userId])
+  @@map("likes")
+}

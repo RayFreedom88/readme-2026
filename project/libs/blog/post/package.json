@@ -15,9 +15,14 @@
     }
   },
   "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/swagger": "^11.4.5",
+    "@project/blog-models": "^0.0.1",
     "@project/core": "0.0.1",
     "@project/data-access": "0.0.1",
     "@project/helpers": "0.0.1",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.15.1",
     "tslib": "^2.3.0"
   }
 }

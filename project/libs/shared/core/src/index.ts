@@ -10,6 +10,7 @@ export type {
   PhotoPost,
   Post,
   QuotePost,
+  Tag,
   TextPost,
   VideoPost,
 } from './lib/post';

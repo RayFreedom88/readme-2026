@@ -11,7 +11,9 @@ export const ApiRoute = {
 
   Post: {
     Root: 'posts',
+    Drafts: 'drafts',
     Id: ':id',
+    Repost: ':id/repost',
   },
 
   Comment: {

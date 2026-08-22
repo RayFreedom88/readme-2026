@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 
-import { Entity, EntityFactory,StorableEntity } from '@project/core';
+import { Entity, EntityFactory, StorableEntity } from '@project/core';
 
 import { Repository } from './repository.interface';
 

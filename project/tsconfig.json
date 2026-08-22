@@ -44,6 +44,12 @@
     },
     {
       "path": "./libs/user/config"
+    },
+    {
+      "path": "./libs/blog/models"
+    },
+    {
+      "path": "./libs/blog/config"
     }
   ]
 }

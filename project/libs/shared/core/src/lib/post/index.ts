@@ -9,4 +9,5 @@ export type {
   TextPost,
   VideoPost,
 } from './post.interface';
-export { PostSorting,PostState, PostType } from './post-type.type';
+export { PostSorting, PostState, PostType } from './post-type.type';
+export type { Tag } from './tag.interface';

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 
+import { PrismaClientModule } from '@project/blog-models';
 import { PostModule } from '@project/post';
 
 import { CommentController } from './comment.controller';
@@ -8,7 +9,7 @@ import { CommentRepository } from './comment.repository';
 import { CommentService } from './comment.service';
 
 @Module({
-  imports: [PostModule],
+  imports: [PrismaClientModule, PostModule],
   controllers: [CommentController],
   providers: [CommentService, CommentRepository, CommentFactory],
   exports: [CommentService],

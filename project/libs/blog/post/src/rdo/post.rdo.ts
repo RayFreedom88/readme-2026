@@ -1,6 +1,8 @@
 import { Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 
+import { PostState, PostType } from '@project/core';
+
 import { PostPropertyDescription } from '../post.constant';
 
 export class PostRdo {
@@ -13,17 +15,19 @@ export class PostRdo {
 
   @ApiProperty({
     description: PostPropertyDescription.Type,
-    example: 'text',
+    enum: PostType,
+    example: PostType.Text,
   })
   @Expose()
-  public type!: string;
+  public type!: PostType;
 
   @ApiProperty({
     description: PostPropertyDescription.State,
-    example: 'published',
+    enum: PostState,
+    example: PostState.Published,
   })
   @Expose()
-  public state!: string;
+  public state!: PostState;
 
   @ApiProperty({
     description: PostPropertyDescription.AuthorId,
@@ -54,6 +58,22 @@ export class PostRdo {
   })
   @Expose()
   public isRepost!: boolean;
+
+  @ApiProperty({
+    description: PostPropertyDescription.OriginalAuthorId,
+    example: '123e4567-e89b-12d3-a456-426614174000',
+    required: false,
+  })
+  @Expose()
+  public originalAuthorId?: string;
+
+  @ApiProperty({
+    description: PostPropertyDescription.OriginalPostId,
+    example: '123e4567-e89b-12d3-a456-426614174000',
+    required: false,
+  })
+  @Expose()
+  public originalPostId?: string;
 
   @ApiProperty({
     description: PostPropertyDescription.LikesCount,

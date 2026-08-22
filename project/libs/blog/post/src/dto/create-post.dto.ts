@@ -1,122 +1,185 @@
+import {
+  Equals,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUrl,
+  IsUUID,
+  Length,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-import type { PostState, PostType } from '@project/core';
+import { PostType } from '@project/core';
 
-import { PostPropertyDescription } from '../post.constant';
+import { PostTagsDto } from './post-tags.dto';
 
-// TODO: добавить декораторы class-validator
-// TODO: разделить на отдельные DTO по подтипам Post (Video/Text/Quote/Photo/Link)
-// TODO: заменить authorId на id из JWT, когда появится guard
-export class CreatePostDto {
-  @ApiProperty({
-    description: PostPropertyDescription.Type,
-    example: 'text',
-  })
-  public type!: PostType;
+import {
+  PostAnnounceLength,
+  PostDescriptionLength,
+  PostPropertyDescription,
+  PostQuoteAuthorLength,
+  PostQuoteTextLength,
+  PostTextLength,
+  PostTitleLength,
+  YOUTUBE_HOST_WHITELIST,
+} from '../post.constant';
 
-  @ApiProperty({
-    description: PostPropertyDescription.State,
-    example: 'published',
-    required: false,
-  })
-  public state?: PostState;
-
+export class CreatePostBaseDto extends PostTagsDto {
+  // TODO: replace authorId with the verified identity from API Gateway.
   @ApiProperty({
     description: PostPropertyDescription.AuthorId,
-    example: '123e4567-e89b-12d3-a456-426614174000',
+    example: '658170cbb954e9f5b905ccf4',
   })
+  @IsString()
+  @IsNotEmpty()
   public authorId!: string;
+}
 
+export class CreateVideoPostDto extends CreatePostBaseDto {
   @ApiProperty({
-    description: PostPropertyDescription.Tags,
-    example: ['nestjs', 'typescript'],
-    required: false,
-    isArray: true,
-    type: String,
+    description: PostPropertyDescription.Type,
+    enum: PostType,
+    example: PostType.Video,
   })
-  public tags?: string[];
-
-  @ApiProperty({
-    description: PostPropertyDescription.PublishedAt,
-    example: '1999-03-31T00:00:00.000Z',
-    required: false,
-  })
-  public publishedAt?: Date;
-
-  @ApiProperty({
-    description: PostPropertyDescription.IsRepost,
-    example: false,
-    required: false,
-  })
-  public isRepost?: boolean;
-
-  @ApiProperty({
-    description: PostPropertyDescription.OriginalAuthorId,
-    example: '123e4567-e89b-12d3-a456-426614174000',
-    required: false,
-  })
-  public originalAuthorId?: string;
-
-  @ApiProperty({
-    description: PostPropertyDescription.OriginalPostId,
-    example: '123e4567-e89b-12d3-a456-426614174000',
-    required: false,
-  })
-  public originalPostId?: string;
+  @Equals(PostType.Video)
+  public type!: PostType.Video;
 
   @ApiProperty({
     description: PostPropertyDescription.Title,
-    example: 'Hello Neo',
-    required: false,
+    example: 'Hello Neo from Zion city',
   })
-  public title?: string;
-
-  @ApiProperty({
-    description: PostPropertyDescription.Announce,
-    example: 'Follow the white rabbit',
-    required: false,
-  })
-  public announce?: string;
-
-  @ApiProperty({
-    description: PostPropertyDescription.Text,
-    example: 'There is no spoon.',
-    required: false,
-  })
-  public text?: string;
+  @IsString()
+  @Length(PostTitleLength.Min, PostTitleLength.Max)
+  public title!: string;
 
   @ApiProperty({
     description: PostPropertyDescription.VideoUrl,
-    example: 'https://example.com/video.mp4',
-    required: false,
+    example: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
   })
-  public videoUrl?: string;
+  @IsUrl({
+    require_protocol: true,
+    protocols: ['http', 'https'],
+    host_whitelist: [...YOUTUBE_HOST_WHITELIST],
+  })
+  public videoUrl!: string;
+}
+
+export class CreateTextPostDto extends CreatePostBaseDto {
+  @ApiProperty({
+    description: PostPropertyDescription.Type,
+    enum: PostType,
+    example: PostType.Text,
+  })
+  @Equals(PostType.Text)
+  public type!: PostType.Text;
+
+  @ApiProperty({
+    description: PostPropertyDescription.Title,
+    example: 'Hello Neo from Zion city',
+  })
+  @IsString()
+  @Length(PostTitleLength.Min, PostTitleLength.Max)
+  public title!: string;
+
+  @ApiProperty({
+    description: PostPropertyDescription.Announce,
+    example: 'Follow the white rabbit through the matrix of our world today.',
+  })
+  @IsString()
+  @Length(PostAnnounceLength.Min, PostAnnounceLength.Max)
+  public announce!: string;
+
+  @ApiProperty({
+    description: PostPropertyDescription.Text,
+    example:
+      'There is no spoon. The matrix is a system, Neo. That system is our enemy and we must understand it.',
+  })
+  @IsString()
+  @Length(PostTextLength.Min, PostTextLength.Max)
+  public text!: string;
+}
+
+export class CreateQuotePostDto extends CreatePostBaseDto {
+  @ApiProperty({
+    description: PostPropertyDescription.Type,
+    enum: PostType,
+    example: PostType.Quote,
+  })
+  @Equals(PostType.Quote)
+  public type!: PostType.Quote;
+
+  @ApiProperty({
+    description: PostPropertyDescription.Text,
+    example: 'There is no spoon. The matrix is a system we must understand.',
+  })
+  @IsString()
+  @Length(PostQuoteTextLength.Min, PostQuoteTextLength.Max)
+  public text!: string;
+
+  @ApiProperty({
+    description: PostPropertyDescription.QuoteAuthor,
+    example: 'Morpheus',
+  })
+  @IsString()
+  @Length(PostQuoteAuthorLength.Min, PostQuoteAuthorLength.Max)
+  public quoteAuthor!: string;
+}
+
+export class CreatePhotoPostDto extends CreatePostBaseDto {
+  @ApiProperty({
+    description: PostPropertyDescription.Type,
+    enum: PostType,
+    example: PostType.Photo,
+  })
+  @Equals(PostType.Photo)
+  public type!: PostType.Photo;
 
   @ApiProperty({
     description: PostPropertyDescription.PhotoId,
     example: '123e4567-e89b-12d3-a456-426614174000',
-    required: false,
   })
-  public photoId?: string;
+  @IsUUID()
+  public photoId!: string;
+}
+
+export class CreateLinkPostDto extends CreatePostBaseDto {
+  @ApiProperty({
+    description: PostPropertyDescription.Type,
+    enum: PostType,
+    example: PostType.Link,
+  })
+  @Equals(PostType.Link)
+  public type!: PostType.Link;
 
   @ApiProperty({
     description: PostPropertyDescription.Url,
     example: 'https://example.com',
-    required: false,
   })
-  public url?: string;
+  @IsUrl({ require_protocol: true, protocols: ['http', 'https'] })
+  public url!: string;
 
   @ApiProperty({
     description: PostPropertyDescription.Description,
     example: 'Useful link',
     required: false,
   })
+  @IsOptional()
+  @IsString()
+  @Length(0, PostDescriptionLength.Max)
   public description?: string;
-
-  @ApiProperty({
-    description: PostPropertyDescription.QuoteAuthor,
-    example: 'Morpheus',
-    required: false,
-  })
-  public quoteAuthor?: string;
 }
+
+export type CreatePostDto =
+  | CreateVideoPostDto
+  | CreateTextPostDto
+  | CreateQuotePostDto
+  | CreatePhotoPostDto
+  | CreateLinkPostDto;
+
+export const CREATE_POST_DTO_BY_TYPE = {
+  [PostType.Video]: CreateVideoPostDto,
+  [PostType.Text]: CreateTextPostDto,
+  [PostType.Quote]: CreateQuotePostDto,
+  [PostType.Photo]: CreatePhotoPostDto,
+  [PostType.Link]: CreateLinkPostDto,
+} as const;
